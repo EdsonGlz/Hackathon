@@ -1,0 +1,454 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PlantAppModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="BitacoraFumigacion">
+    <Key>
+      <PropertyRef Name="idBitacoraFumigacion" />
+    </Key>
+    <Property Name="idBitacoraFumigacion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idPlanta" Type="Int32" />
+    <Property Name="idMotivo" Type="Int32" />
+    <Property Name="idQuimico" Type="Int32" />
+    <Property Name="Fecha" Type="DateTime" Precision="7" />
+    <NavigationProperty Name="Motivo" Relationship="Self.FK_BitacoraFumigacion_Motivo" FromRole="BitacoraFumigacion" ToRole="Motivo" />
+    <NavigationProperty Name="Planta" Relationship="Self.FK_BitacoraFumigacion_Planta" FromRole="BitacoraFumigacion" ToRole="Planta" />
+    <NavigationProperty Name="Quimico" Relationship="Self.FK_BitacoraFumigacion_Quimico" FromRole="BitacoraFumigacion" ToRole="Quimico" />
+  </EntityType>
+  <EntityType Name="BitacoraRiego">
+    <Key>
+      <PropertyRef Name="idBitacoraRiego" />
+    </Key>
+    <Property Name="idBitacoraRiego" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idPlanta" Type="Int32" />
+    <Property Name="FechaHora" Type="DateTime" Precision="7" />
+    <Property Name="LitrosAgua" Type="Double" />
+    <NavigationProperty Name="Planta" Relationship="Self.FK_BitacoraRiego_Planta" FromRole="BitacoraRiego" ToRole="Planta" />
+  </EntityType>
+  <EntityType Name="BitacoraSupervision">
+    <Key>
+      <PropertyRef Name="idBitacoraSupervision" />
+    </Key>
+    <Property Name="idBitacoraSupervision" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idPlanta" Type="Int32" />
+    <Property Name="idEstadoTronco" Type="Int32" />
+    <Property Name="idEstadoRamas" Type="Int32" />
+    <Property Name="idEstadoHojas" Type="Int32" />
+    <Property Name="Fecha" Type="DateTime" Precision="7" />
+    <Property Name="Observaciones" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="EstadoHojas" Relationship="Self.FK_BitacoraSupervision_EstadoHojas" FromRole="BitacoraSupervision" ToRole="EstadoHojas" />
+    <NavigationProperty Name="EstadoRamas" Relationship="Self.FK_BitacoraSupervision_EstadoRamas" FromRole="BitacoraSupervision" ToRole="EstadoRamas" />
+    <NavigationProperty Name="EstadoTronco" Relationship="Self.FK_BitacoraSupervision_EstadoTronco" FromRole="BitacoraSupervision" ToRole="EstadoTronco" />
+    <NavigationProperty Name="Planta" Relationship="Self.FK_BitacoraSupervision_Planta" FromRole="BitacoraSupervision" ToRole="Planta" />
+  </EntityType>
+  <EntityType Name="Estado">
+    <Key>
+      <PropertyRef Name="idEstado" />
+    </Key>
+    <Property Name="idEstado" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Estado1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="EstadoHojas" Relationship="Self.FK_EstadoHojas_Estado" FromRole="Estado" ToRole="EstadoHojas" />
+    <NavigationProperty Name="EstadoRamas" Relationship="Self.FK_EstadoRamas_Estado" FromRole="Estado" ToRole="EstadoRamas" />
+    <NavigationProperty Name="EstadoTronco" Relationship="Self.FK_EstadoTronco_Estado" FromRole="Estado" ToRole="EstadoTronco" />
+  </EntityType>
+  <EntityType Name="EstadoHojas">
+    <Key>
+      <PropertyRef Name="idEstadoHojas" />
+    </Key>
+    <Property Name="idEstadoHojas" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idPlanta" Type="Int32" />
+    <Property Name="idEstado" Type="Int32" />
+    <NavigationProperty Name="BitacoraSupervision" Relationship="Self.FK_BitacoraSupervision_EstadoHojas" FromRole="EstadoHojas" ToRole="BitacoraSupervision" />
+    <NavigationProperty Name="Estado" Relationship="Self.FK_EstadoHojas_Estado" FromRole="EstadoHojas" ToRole="Estado" />
+    <NavigationProperty Name="Planta" Relationship="Self.FK_EstadoHojas_Planta" FromRole="EstadoHojas" ToRole="Planta" />
+  </EntityType>
+  <EntityType Name="EstadoRamas">
+    <Key>
+      <PropertyRef Name="idEstadoRamas" />
+    </Key>
+    <Property Name="idEstadoRamas" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idPlanta" Type="Int32" />
+    <Property Name="idEstado" Type="Int32" />
+    <NavigationProperty Name="BitacoraSupervision" Relationship="Self.FK_BitacoraSupervision_EstadoRamas" FromRole="EstadoRamas" ToRole="BitacoraSupervision" />
+    <NavigationProperty Name="Estado" Relationship="Self.FK_EstadoRamas_Estado" FromRole="EstadoRamas" ToRole="Estado" />
+    <NavigationProperty Name="Planta" Relationship="Self.FK_EstadoRamas_Planta" FromRole="EstadoRamas" ToRole="Planta" />
+  </EntityType>
+  <EntityType Name="EstadoTronco">
+    <Key>
+      <PropertyRef Name="idEstadoTronco" />
+    </Key>
+    <Property Name="idEstadoTronco" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idPlanta" Type="Int32" />
+    <Property Name="idEstado" Type="Int32" />
+    <NavigationProperty Name="BitacoraSupervision" Relationship="Self.FK_BitacoraSupervision_EstadoTronco" FromRole="EstadoTronco" ToRole="BitacoraSupervision" />
+    <NavigationProperty Name="Estado" Relationship="Self.FK_EstadoTronco_Estado" FromRole="EstadoTronco" ToRole="Estado" />
+    <NavigationProperty Name="Planta" Relationship="Self.FK_EstadoTronco_Planta" FromRole="EstadoTronco" ToRole="Planta" />
+  </EntityType>
+  <EntityType Name="Historia">
+    <Key>
+      <PropertyRef Name="idHistoria" />
+    </Key>
+    <Property Name="idHistoria" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idPlanta" Type="Int32" Nullable="false" />
+    <Property Name="AnioPlantacion" Type="Int32" />
+    <Property Name="AlturaCentimetros" Type="Double" />
+    <Property Name="Donador" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+    <Property Name="LugarOrigen" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ValorComercial" Type="Double" />
+    <NavigationProperty Name="Planta" Relationship="Self.FK_Historia_Planta" FromRole="Historia" ToRole="Planta" />
+  </EntityType>
+  <EntityType Name="Motivo">
+    <Key>
+      <PropertyRef Name="idMotivo" />
+    </Key>
+    <Property Name="idMotivo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MotivoDescripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="BitacoraFumigacion" Relationship="Self.FK_BitacoraFumigacion_Motivo" FromRole="Motivo" ToRole="BitacoraFumigacion" />
+  </EntityType>
+  <EntityType Name="Planta">
+    <Key>
+      <PropertyRef Name="idPlanta" />
+    </Key>
+    <Property Name="idPlanta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idUbicacion" Type="Int32" />
+    <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="NombreCientifico" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Clasificacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="UltimoRiego" Type="DateTime" Precision="7" />
+    <Property Name="SiguienteRiego" Type="DateTime" Precision="7" />
+    <Property Name="UltimaPoda" Type="DateTime" Precision="7" />
+    <Property Name="ProximaFertilizacion" Type="DateTime" Precision="7" />
+    <Property Name="ImagenUrl" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="BitacoraFumigacion" Relationship="Self.FK_BitacoraFumigacion_Planta" FromRole="Planta" ToRole="BitacoraFumigacion" />
+    <NavigationProperty Name="BitacoraRiego" Relationship="Self.FK_BitacoraRiego_Planta" FromRole="Planta" ToRole="BitacoraRiego" />
+    <NavigationProperty Name="BitacoraSupervision" Relationship="Self.FK_BitacoraSupervision_Planta" FromRole="Planta" ToRole="BitacoraSupervision" />
+    <NavigationProperty Name="EstadoHojas" Relationship="Self.FK_EstadoHojas_Planta" FromRole="Planta" ToRole="EstadoHojas" />
+    <NavigationProperty Name="EstadoRamas" Relationship="Self.FK_EstadoRamas_Planta" FromRole="Planta" ToRole="EstadoRamas" />
+    <NavigationProperty Name="EstadoTronco" Relationship="Self.FK_EstadoTronco_Planta" FromRole="Planta" ToRole="EstadoTronco" />
+    <NavigationProperty Name="Historia" Relationship="Self.FK_Historia_Planta" FromRole="Planta" ToRole="Historia" />
+    <NavigationProperty Name="Ubicacion" Relationship="Self.FK_Planta_Ubicacion" FromRole="Planta" ToRole="Ubicacion" />
+  </EntityType>
+  <EntityType Name="Quimico">
+    <Key>
+      <PropertyRef Name="idQuimico" />
+    </Key>
+    <Property Name="idQuimico" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idUnidad" Type="Int32" />
+    <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Cantidad" Type="Double" />
+    <NavigationProperty Name="BitacoraFumigacion" Relationship="Self.FK_BitacoraFumigacion_Quimico" FromRole="Quimico" ToRole="BitacoraFumigacion" />
+    <NavigationProperty Name="Unidad" Relationship="Self.FK_Quimico_Unidad" FromRole="Quimico" ToRole="Unidad" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Ubicacion">
+    <Key>
+      <PropertyRef Name="idUbicacion" />
+    </Key>
+    <Property Name="idUbicacion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NombreSector" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Planta" Relationship="Self.FK_Planta_Ubicacion" FromRole="Ubicacion" ToRole="Planta" />
+  </EntityType>
+  <EntityType Name="Unidad">
+    <Key>
+      <PropertyRef Name="idUnidad" />
+    </Key>
+    <Property Name="idUnidad" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Unidad1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Quimico" Relationship="Self.FK_Quimico_Unidad" FromRole="Unidad" ToRole="Quimico" />
+  </EntityType>
+  <Association Name="FK_BitacoraFumigacion_Motivo">
+    <End Role="Motivo" Type="Self.Motivo" Multiplicity="0..1" />
+    <End Role="BitacoraFumigacion" Type="Self.BitacoraFumigacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Motivo">
+        <PropertyRef Name="idMotivo" />
+      </Principal>
+      <Dependent Role="BitacoraFumigacion">
+        <PropertyRef Name="idMotivo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BitacoraFumigacion_Planta">
+    <End Role="Planta" Type="Self.Planta" Multiplicity="0..1" />
+    <End Role="BitacoraFumigacion" Type="Self.BitacoraFumigacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Planta">
+        <PropertyRef Name="idPlanta" />
+      </Principal>
+      <Dependent Role="BitacoraFumigacion">
+        <PropertyRef Name="idPlanta" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BitacoraFumigacion_Quimico">
+    <End Role="Quimico" Type="Self.Quimico" Multiplicity="0..1" />
+    <End Role="BitacoraFumigacion" Type="Self.BitacoraFumigacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Quimico">
+        <PropertyRef Name="idQuimico" />
+      </Principal>
+      <Dependent Role="BitacoraFumigacion">
+        <PropertyRef Name="idQuimico" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BitacoraRiego_Planta">
+    <End Role="Planta" Type="Self.Planta" Multiplicity="0..1" />
+    <End Role="BitacoraRiego" Type="Self.BitacoraRiego" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Planta">
+        <PropertyRef Name="idPlanta" />
+      </Principal>
+      <Dependent Role="BitacoraRiego">
+        <PropertyRef Name="idPlanta" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BitacoraSupervision_EstadoHojas">
+    <End Role="EstadoHojas" Type="Self.EstadoHojas" Multiplicity="0..1" />
+    <End Role="BitacoraSupervision" Type="Self.BitacoraSupervision" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EstadoHojas">
+        <PropertyRef Name="idEstadoHojas" />
+      </Principal>
+      <Dependent Role="BitacoraSupervision">
+        <PropertyRef Name="idEstadoHojas" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BitacoraSupervision_EstadoRamas">
+    <End Role="EstadoRamas" Type="Self.EstadoRamas" Multiplicity="0..1" />
+    <End Role="BitacoraSupervision" Type="Self.BitacoraSupervision" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EstadoRamas">
+        <PropertyRef Name="idEstadoRamas" />
+      </Principal>
+      <Dependent Role="BitacoraSupervision">
+        <PropertyRef Name="idEstadoRamas" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BitacoraSupervision_EstadoTronco">
+    <End Role="EstadoTronco" Type="Self.EstadoTronco" Multiplicity="0..1" />
+    <End Role="BitacoraSupervision" Type="Self.BitacoraSupervision" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EstadoTronco">
+        <PropertyRef Name="idEstadoTronco" />
+      </Principal>
+      <Dependent Role="BitacoraSupervision">
+        <PropertyRef Name="idEstadoTronco" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BitacoraSupervision_Planta">
+    <End Role="Planta" Type="Self.Planta" Multiplicity="0..1" />
+    <End Role="BitacoraSupervision" Type="Self.BitacoraSupervision" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Planta">
+        <PropertyRef Name="idPlanta" />
+      </Principal>
+      <Dependent Role="BitacoraSupervision">
+        <PropertyRef Name="idPlanta" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EstadoHojas_Estado">
+    <End Role="Estado" Type="Self.Estado" Multiplicity="0..1" />
+    <End Role="EstadoHojas" Type="Self.EstadoHojas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Estado">
+        <PropertyRef Name="idEstado" />
+      </Principal>
+      <Dependent Role="EstadoHojas">
+        <PropertyRef Name="idEstado" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EstadoRamas_Estado">
+    <End Role="Estado" Type="Self.Estado" Multiplicity="0..1" />
+    <End Role="EstadoRamas" Type="Self.EstadoRamas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Estado">
+        <PropertyRef Name="idEstado" />
+      </Principal>
+      <Dependent Role="EstadoRamas">
+        <PropertyRef Name="idEstado" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EstadoTronco_Estado">
+    <End Role="Estado" Type="Self.Estado" Multiplicity="0..1" />
+    <End Role="EstadoTronco" Type="Self.EstadoTronco" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Estado">
+        <PropertyRef Name="idEstado" />
+      </Principal>
+      <Dependent Role="EstadoTronco">
+        <PropertyRef Name="idEstado" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EstadoHojas_Planta">
+    <End Role="Planta" Type="Self.Planta" Multiplicity="0..1" />
+    <End Role="EstadoHojas" Type="Self.EstadoHojas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Planta">
+        <PropertyRef Name="idPlanta" />
+      </Principal>
+      <Dependent Role="EstadoHojas">
+        <PropertyRef Name="idPlanta" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EstadoRamas_Planta">
+    <End Role="Planta" Type="Self.Planta" Multiplicity="0..1" />
+    <End Role="EstadoRamas" Type="Self.EstadoRamas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Planta">
+        <PropertyRef Name="idPlanta" />
+      </Principal>
+      <Dependent Role="EstadoRamas">
+        <PropertyRef Name="idPlanta" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EstadoTronco_Planta">
+    <End Role="Planta" Type="Self.Planta" Multiplicity="0..1" />
+    <End Role="EstadoTronco" Type="Self.EstadoTronco" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Planta">
+        <PropertyRef Name="idPlanta" />
+      </Principal>
+      <Dependent Role="EstadoTronco">
+        <PropertyRef Name="idPlanta" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Historia_Planta">
+    <End Role="Planta" Type="Self.Planta" Multiplicity="1" />
+    <End Role="Historia" Type="Self.Historia" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Planta">
+        <PropertyRef Name="idPlanta" />
+      </Principal>
+      <Dependent Role="Historia">
+        <PropertyRef Name="idPlanta" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Planta_Ubicacion">
+    <End Role="Ubicacion" Type="Self.Ubicacion" Multiplicity="0..1" />
+    <End Role="Planta" Type="Self.Planta" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ubicacion">
+        <PropertyRef Name="idUbicacion" />
+      </Principal>
+      <Dependent Role="Planta">
+        <PropertyRef Name="idUbicacion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Quimico_Unidad">
+    <End Role="Unidad" Type="Self.Unidad" Multiplicity="0..1" />
+    <End Role="Quimico" Type="Self.Quimico" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Unidad">
+        <PropertyRef Name="idUnidad" />
+      </Principal>
+      <Dependent Role="Quimico">
+        <PropertyRef Name="idUnidad" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="PlantAppEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="BitacoraFumigacion" EntityType="Self.BitacoraFumigacion" />
+    <EntitySet Name="BitacoraRiego" EntityType="Self.BitacoraRiego" />
+    <EntitySet Name="BitacoraSupervision" EntityType="Self.BitacoraSupervision" />
+    <EntitySet Name="Estado" EntityType="Self.Estado" />
+    <EntitySet Name="EstadoHojas" EntityType="Self.EstadoHojas" />
+    <EntitySet Name="EstadoRamas" EntityType="Self.EstadoRamas" />
+    <EntitySet Name="EstadoTronco" EntityType="Self.EstadoTronco" />
+    <EntitySet Name="Historia" EntityType="Self.Historia" />
+    <EntitySet Name="Motivo" EntityType="Self.Motivo" />
+    <EntitySet Name="Planta" EntityType="Self.Planta" />
+    <EntitySet Name="Quimico" EntityType="Self.Quimico" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="Ubicacion" EntityType="Self.Ubicacion" />
+    <EntitySet Name="Unidad" EntityType="Self.Unidad" />
+    <AssociationSet Name="FK_BitacoraFumigacion_Motivo" Association="Self.FK_BitacoraFumigacion_Motivo">
+      <End Role="Motivo" EntitySet="Motivo" />
+      <End Role="BitacoraFumigacion" EntitySet="BitacoraFumigacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BitacoraFumigacion_Planta" Association="Self.FK_BitacoraFumigacion_Planta">
+      <End Role="Planta" EntitySet="Planta" />
+      <End Role="BitacoraFumigacion" EntitySet="BitacoraFumigacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BitacoraFumigacion_Quimico" Association="Self.FK_BitacoraFumigacion_Quimico">
+      <End Role="Quimico" EntitySet="Quimico" />
+      <End Role="BitacoraFumigacion" EntitySet="BitacoraFumigacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BitacoraRiego_Planta" Association="Self.FK_BitacoraRiego_Planta">
+      <End Role="Planta" EntitySet="Planta" />
+      <End Role="BitacoraRiego" EntitySet="BitacoraRiego" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BitacoraSupervision_EstadoHojas" Association="Self.FK_BitacoraSupervision_EstadoHojas">
+      <End Role="EstadoHojas" EntitySet="EstadoHojas" />
+      <End Role="BitacoraSupervision" EntitySet="BitacoraSupervision" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BitacoraSupervision_EstadoRamas" Association="Self.FK_BitacoraSupervision_EstadoRamas">
+      <End Role="EstadoRamas" EntitySet="EstadoRamas" />
+      <End Role="BitacoraSupervision" EntitySet="BitacoraSupervision" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BitacoraSupervision_EstadoTronco" Association="Self.FK_BitacoraSupervision_EstadoTronco">
+      <End Role="EstadoTronco" EntitySet="EstadoTronco" />
+      <End Role="BitacoraSupervision" EntitySet="BitacoraSupervision" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BitacoraSupervision_Planta" Association="Self.FK_BitacoraSupervision_Planta">
+      <End Role="Planta" EntitySet="Planta" />
+      <End Role="BitacoraSupervision" EntitySet="BitacoraSupervision" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EstadoHojas_Estado" Association="Self.FK_EstadoHojas_Estado">
+      <End Role="Estado" EntitySet="Estado" />
+      <End Role="EstadoHojas" EntitySet="EstadoHojas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EstadoRamas_Estado" Association="Self.FK_EstadoRamas_Estado">
+      <End Role="Estado" EntitySet="Estado" />
+      <End Role="EstadoRamas" EntitySet="EstadoRamas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EstadoTronco_Estado" Association="Self.FK_EstadoTronco_Estado">
+      <End Role="Estado" EntitySet="Estado" />
+      <End Role="EstadoTronco" EntitySet="EstadoTronco" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EstadoHojas_Planta" Association="Self.FK_EstadoHojas_Planta">
+      <End Role="Planta" EntitySet="Planta" />
+      <End Role="EstadoHojas" EntitySet="EstadoHojas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EstadoRamas_Planta" Association="Self.FK_EstadoRamas_Planta">
+      <End Role="Planta" EntitySet="Planta" />
+      <End Role="EstadoRamas" EntitySet="EstadoRamas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EstadoTronco_Planta" Association="Self.FK_EstadoTronco_Planta">
+      <End Role="Planta" EntitySet="Planta" />
+      <End Role="EstadoTronco" EntitySet="EstadoTronco" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Historia_Planta" Association="Self.FK_Historia_Planta">
+      <End Role="Planta" EntitySet="Planta" />
+      <End Role="Historia" EntitySet="Historia" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Planta_Ubicacion" Association="Self.FK_Planta_Ubicacion">
+      <End Role="Ubicacion" EntitySet="Ubicacion" />
+      <End Role="Planta" EntitySet="Planta" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Quimico_Unidad" Association="Self.FK_Quimico_Unidad">
+      <End Role="Unidad" EntitySet="Unidad" />
+      <End Role="Quimico" EntitySet="Quimico" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

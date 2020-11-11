@@ -1,0 +1,148 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="PlantAppModelStoreContainer" CdmEntityContainer="PlantAppEntities">
+    <EntitySetMapping Name="BitacoraFumigacion">
+      <EntityTypeMapping TypeName="PlantAppModel.BitacoraFumigacion">
+        <MappingFragment StoreEntitySet="BitacoraFumigacion">
+          <ScalarProperty Name="idBitacoraFumigacion" ColumnName="idBitacoraFumigacion" />
+          <ScalarProperty Name="idPlanta" ColumnName="idPlanta" />
+          <ScalarProperty Name="idMotivo" ColumnName="idMotivo" />
+          <ScalarProperty Name="idQuimico" ColumnName="idQuimico" />
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BitacoraRiego">
+      <EntityTypeMapping TypeName="PlantAppModel.BitacoraRiego">
+        <MappingFragment StoreEntitySet="BitacoraRiego">
+          <ScalarProperty Name="idBitacoraRiego" ColumnName="idBitacoraRiego" />
+          <ScalarProperty Name="idPlanta" ColumnName="idPlanta" />
+          <ScalarProperty Name="FechaHora" ColumnName="FechaHora" />
+          <ScalarProperty Name="LitrosAgua" ColumnName="LitrosAgua" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BitacoraSupervision">
+      <EntityTypeMapping TypeName="PlantAppModel.BitacoraSupervision">
+        <MappingFragment StoreEntitySet="BitacoraSupervision">
+          <ScalarProperty Name="idBitacoraSupervision" ColumnName="idBitacoraSupervision" />
+          <ScalarProperty Name="idPlanta" ColumnName="idPlanta" />
+          <ScalarProperty Name="idEstadoTronco" ColumnName="idEstadoTronco" />
+          <ScalarProperty Name="idEstadoRamas" ColumnName="idEstadoRamas" />
+          <ScalarProperty Name="idEstadoHojas" ColumnName="idEstadoHojas" />
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+          <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Estado">
+      <EntityTypeMapping TypeName="PlantAppModel.Estado">
+        <MappingFragment StoreEntitySet="Estado">
+          <ScalarProperty Name="idEstado" ColumnName="idEstado" />
+          <ScalarProperty Name="Estado1" ColumnName="Estado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EstadoHojas">
+      <EntityTypeMapping TypeName="PlantAppModel.EstadoHojas">
+        <MappingFragment StoreEntitySet="EstadoHojas">
+          <ScalarProperty Name="idEstadoHojas" ColumnName="idEstadoHojas" />
+          <ScalarProperty Name="idPlanta" ColumnName="idPlanta" />
+          <ScalarProperty Name="idEstado" ColumnName="idEstado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EstadoRamas">
+      <EntityTypeMapping TypeName="PlantAppModel.EstadoRamas">
+        <MappingFragment StoreEntitySet="EstadoRamas">
+          <ScalarProperty Name="idEstadoRamas" ColumnName="idEstadoRamas" />
+          <ScalarProperty Name="idPlanta" ColumnName="idPlanta" />
+          <ScalarProperty Name="idEstado" ColumnName="idEstado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EstadoTronco">
+      <EntityTypeMapping TypeName="PlantAppModel.EstadoTronco">
+        <MappingFragment StoreEntitySet="EstadoTronco">
+          <ScalarProperty Name="idEstadoTronco" ColumnName="idEstadoTronco" />
+          <ScalarProperty Name="idPlanta" ColumnName="idPlanta" />
+          <ScalarProperty Name="idEstado" ColumnName="idEstado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Historia">
+      <EntityTypeMapping TypeName="PlantAppModel.Historia">
+        <MappingFragment StoreEntitySet="Historia">
+          <ScalarProperty Name="idHistoria" ColumnName="idHistoria" />
+          <ScalarProperty Name="idPlanta" ColumnName="idPlanta" />
+          <ScalarProperty Name="AnioPlantacion" ColumnName="AnioPlantacion" />
+          <ScalarProperty Name="AlturaCentimetros" ColumnName="AlturaCentimetros" />
+          <ScalarProperty Name="Donador" ColumnName="Donador" />
+          <ScalarProperty Name="LugarOrigen" ColumnName="LugarOrigen" />
+          <ScalarProperty Name="ValorComercial" ColumnName="ValorComercial" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Motivo">
+      <EntityTypeMapping TypeName="PlantAppModel.Motivo">
+        <MappingFragment StoreEntitySet="Motivo">
+          <ScalarProperty Name="idMotivo" ColumnName="idMotivo" />
+          <ScalarProperty Name="MotivoDescripcion" ColumnName="MotivoDescripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Planta">
+      <EntityTypeMapping TypeName="PlantAppModel.Planta">
+        <MappingFragment StoreEntitySet="Planta">
+          <ScalarProperty Name="idPlanta" ColumnName="idPlanta" />
+          <ScalarProperty Name="idUbicacion" ColumnName="idUbicacion" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="NombreCientifico" ColumnName="NombreCientifico" />
+          <ScalarProperty Name="Clasificacion" ColumnName="Clasificacion" />
+          <ScalarProperty Name="UltimoRiego" ColumnName="UltimoRiego" />
+          <ScalarProperty Name="SiguienteRiego" ColumnName="SiguienteRiego" />
+          <ScalarProperty Name="UltimaPoda" ColumnName="UltimaPoda" />
+          <ScalarProperty Name="ProximaFertilizacion" ColumnName="ProximaFertilizacion" />
+          <ScalarProperty Name="ImagenUrl" ColumnName="ImagenUrl" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Quimico">
+      <EntityTypeMapping TypeName="PlantAppModel.Quimico">
+        <MappingFragment StoreEntitySet="Quimico">
+          <ScalarProperty Name="idQuimico" ColumnName="idQuimico" />
+          <ScalarProperty Name="idUnidad" ColumnName="idUnidad" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="PlantAppModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Ubicacion">
+      <EntityTypeMapping TypeName="PlantAppModel.Ubicacion">
+        <MappingFragment StoreEntitySet="Ubicacion">
+          <ScalarProperty Name="idUbicacion" ColumnName="idUbicacion" />
+          <ScalarProperty Name="NombreSector" ColumnName="NombreSector" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Unidad">
+      <EntityTypeMapping TypeName="PlantAppModel.Unidad">
+        <MappingFragment StoreEntitySet="Unidad">
+          <ScalarProperty Name="idUnidad" ColumnName="idUnidad" />
+          <ScalarProperty Name="Unidad1" ColumnName="Unidad" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
